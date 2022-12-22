@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,12 +38,12 @@ public class Company implements Serializable{
 
 	@Column
 	private String logo;
-
+	
 	@Column(nullable = false, unique = true)
 	private String cnpj;
 	
-	@OneToMany(mappedBy = "company")
-	@JsonManagedReference
+	@OneToMany
+	@JsonBackReference
 	private List<Job> job = new ArrayList<>();
 
 	/**

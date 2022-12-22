@@ -23,7 +23,7 @@ public class JobServices {
 	public List<Job> findAll() {
 
 		logger.info("Finding all jobs!");
-
+		
 		return repository.findAll();
 	}
 	
