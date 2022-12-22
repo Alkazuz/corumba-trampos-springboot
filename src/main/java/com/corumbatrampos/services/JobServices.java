@@ -57,5 +57,10 @@ public class JobServices {
 				.orElseThrow(() -> new ResourceNotFoundException(id, String.format(NOT_FOUND_FORMAT, id)));
 		repository.delete(entity);
 	}
+
+	public Job findById(Long id) throws ResourceNotFoundException {
+		return repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(id, String.format(NOT_FOUND_FORMAT, id)));
+	}
 	
 }
