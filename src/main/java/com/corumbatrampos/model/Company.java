@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class Company implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column
 	private String name,
 				   logo,
 				   cnpj;
@@ -38,38 +40,66 @@ public class Company implements Serializable{
 	@OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Job> job = new ArrayList<>();
 
+	/**
+	 * Retorna a identidade unica da empresa
+	 * @return A identidade unica da empresa.
+	 */
 	public Long getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
+	/**
+	 * Retorna o nome da empresa
+	 * @return O nome da empresa
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Altera o nome da empresa
+	 * @param name Novo nome da empresa.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Retorna a logo da empresa
+	 * @return A logo da empresa.
+	 */
 	public String getLogo() {
 		return logo;
 	}
 
+	/**
+	 * Altera a logo da empresa
+	 * @param logo Nova url de logo da empresa.
+	 */
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
+	/**
+	 * Retorna o cnpj da empresa
+	 * @return O cnpj da empresa.
+	 */
 	public String getCnpj() {
 		return cnpj;
 	}
 
+	/**
+	 * Altera o cnpj da empresa
+	 * @param cnpj Novo cnpj da empresa.
+	 */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
+	/**
+	 * Retorna a lista de empregos da empresa
+	 * @return A lista de empregos da empresa.
+	 */
 	public List<Job> getJob() {
 		return job;
 	}

@@ -12,31 +12,59 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table
 public class Sector implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private String name, description;
 
+	/**
+	 * Retorna a identidade unica do setor
+	 * @return A identidade unica do setor.
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * Retorna o nome do setor
+	 * @return O nome do setor.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Altera o nome do setor
+	 * @param name Novo nome do setor.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Retorna a descrição do setor
+	 * @return A descrição do setor.
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Altera a descrição do setor
+	 * @param description Nova descrição do setor.
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
