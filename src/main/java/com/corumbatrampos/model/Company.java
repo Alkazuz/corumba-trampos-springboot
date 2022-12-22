@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,12 +33,17 @@ public class Company implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
+	private String name;
+
 	@Column
-	private String name,
-				   logo,
-				   cnpj;
+	private String logo;
+
+	@Column(nullable = false, unique = true)
+	private String cnpj;
 	
-	@OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "company")
+	@JsonManagedReference
 	private List<Job> job = new ArrayList<>();
 
 	/**

@@ -10,6 +10,8 @@ package com.corumbatrampos.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,10 +42,12 @@ public class Job implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "company_id")
+	@JsonBackReference
 	private Company company;
 	
 	@ManyToOne
 	@JoinColumn(name = "sector_id")
+	@JsonBackReference
 	private Sector sector;
 
 	/**
