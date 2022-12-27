@@ -1,49 +1,26 @@
 /**
- * Esta classe representa um empprego cadastrado no sistema.
+ * Esta classe representa um empprego cadastrado no sistema como Value Object.
  * Ela possui nome, descrição, salario e referência da empresa.
  * 
  * @author Marcos
  * @version 1.0
  */
 
-package com.corumbatrampos.model;
+package com.corumbatrampos.vo.v1;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "job")
-public class Job implements Serializable{
+import com.corumbatrampos.model.Company;
+import com.corumbatrampos.model.Sector;
+public class JobVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(length = 30)
 	private String name;
-	@Column
 	private String description;
-	@Column
 	private int salary;
-	@Column
 	private int jobs;
-	
-	@ManyToOne
-	@JoinColumn
 	private Company company;
-	
-	@ManyToOne
-	@JoinColumn
 	private Sector sector;
 
 	/**
@@ -141,7 +118,5 @@ public class Job implements Serializable{
 	public void setJobs(int jobs) {
 		this.jobs = jobs;
 	}
-
-	
 
 }

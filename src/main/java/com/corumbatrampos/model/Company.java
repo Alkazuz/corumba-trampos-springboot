@@ -46,6 +46,17 @@ public class Company implements Serializable{
 	@JsonBackReference
 	private List<Job> job = new ArrayList<>();
 
+	public Company() {}
+	
+	public Company(Long id, String name, String logo, String cnpj, List<Job> job) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.logo = logo;
+		this.cnpj = cnpj;
+		this.job = job;
+	}
+
 	/**
 	 * Retorna a identidade unica da empresa
 	 * @return A identidade unica da empresa.

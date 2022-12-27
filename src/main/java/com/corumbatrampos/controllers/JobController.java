@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.corumbatrampos.exceptions.ErrorResponse;
 import com.corumbatrampos.exceptions.repositories.ResourceNotFoundException;
 import com.corumbatrampos.model.Job;
 import com.corumbatrampos.services.JobServices;
+import com.corumbatrampos.vo.v1.JobVO;
 
 @RestController
 @RequestMapping("/job")
@@ -29,21 +31,28 @@ public class JobController {
 	
 	@GetMapping(value = "/all",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Job> findAll() {
+	public List<JobVO> findAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping(value = "/find/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Job findById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+	public JobVO findById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
 		return service.findById(id);
 	}
 	
 	@PostMapping(value = "/new",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Job create(@RequestBody Job job) {
+	public JobVO create(@RequestBody JobVO job) {
 		return service.create(job);
+	}
+	
+	@DeleteMapping(value = "/delete/{id}",
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
